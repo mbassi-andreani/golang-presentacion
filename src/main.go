@@ -1,15 +1,15 @@
 package main // Folder name
 
 import ( // Libraries
-
 	"fmt"
-	"log"
-	"net/http"
-
 	"github.com/fatih/color"
-	"github.com/gadielMa/golang-presentacion/src/examples"
-	"github.com/gorilla/mux"
+	"net/http"
+    "log"
+    "github.com/gorilla/mux"
 )
+func YourHandler(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("Listoooo!!\n"))
+}
 
 type Persona struct {
 	Nombre     string
@@ -29,43 +29,14 @@ var (
 	cyanBoldFmt = color.New(color.FgCyan, color.Bold)
 )
 
-func YourHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hola todo Lisotri Josema!\n"))
-}
-
 func main() {
+
 	r := mux.NewRouter()
-	// Routes consist of a path and a handler function.
-	r.HandleFunc("/health", YourHandler)
+    // Routes consist of a path and a handler function.
+    r.HandleFunc("/health", YourHandler)
 
-	// Bind to a port and pass our router in
-	log.Fatal(http.ListenAndServe(":8080", r))
-
-	cyanFmt.Println("██████╗  ██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗               ██████╗ ██████╗ ███████╗███████╗███████╗███╗   ██╗████████╗ █████╗  ██████╗██╗ ██████╗ ███╗   ██╗")
-	cyanFmt.Println("██╔════╝ ██╔═══██╗██║     ██╔══██╗████╗  ██║██╔════╝               ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║")
-	cyanFmt.Println("██║  ███╗██║   ██║██║     ███████║██╔██╗ ██║██║  ███╗    █████╗    ██████╔╝██████╔╝█████╗  ███████╗█████╗  ██╔██╗ ██║   ██║   ███████║██║     ██║██║   ██║██╔██╗ ██║")
-	cyanFmt.Println("██║   ██║██║   ██║██║     ██╔══██║██║╚██╗██║██║   ██║    ╚════╝    ██╔═══╝ ██╔══██╗██╔══╝  ╚════██║██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██║     ██║██║   ██║██║╚██╗██║")
-	cyanFmt.Println("╚██████╔╝╚██████╔╝███████╗██║  ██║██║ ╚████║╚██████╔╝              ██║     ██║  ██║███████╗███████║███████╗██║ ╚████║   ██║   ██║  ██║╚██████╗██║╚██████╔╝██║ ╚████║")
-	cyanFmt.Println(" ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝               ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝")
-
-	cyanBoldFmt.Print("\nIngrese su nombre: ")
-	fmt.Scanf("%s", &subdito.Nombre)
-
-	cyanBoldFmt.Print("\nBuen día ")
-	boldFmt.Print(subdito.Nombre, "!")
-	cyanBoldFmt.Print(" Has ingresando al maravilloso universo de Golang.\n")
-	continuar()
-
-	// Pointer - Example
-	genericExample("Pointer", examples.PointerExample)
-
-	// Go Routine - Example
-	genericExample("Go Routine", examples.GoroutineExample)
-
-	// Channel - Example
-	genericExample("Channel", examples.ChannelExample)
-
-	subdito.despedirse()
+    // Bind to a port and pass our router in
+    log.Fatal(http.ListenAndServe(":8080", r))
 }
 
 /* func FuncName ( Parameters ) Returns */
