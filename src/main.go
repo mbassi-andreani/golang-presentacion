@@ -3,9 +3,12 @@ package main // Folder name
 import ( // Libraries
 
 	"fmt"
+	"log"
+	"net/http"
 
 	"github.com/fatih/color"
 	"github.com/gadielMa/golang-presentacion/src/examples"
+	"github.com/gorilla/mux"
 )
 
 type Persona struct {
@@ -26,9 +29,19 @@ var (
 	cyanBoldFmt = color.New(color.FgCyan, color.Bold)
 )
 
-func main() {
+func YourHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hola todo Lisotri Josema!\n"))
+}
 
-	cyanFmt.Println("\n ██████╗  ██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗               ██████╗ ██████╗ ███████╗███████╗███████╗███╗   ██╗████████╗ █████╗  ██████╗██╗ ██████╗ ███╗   ██╗")
+func main() {
+	r := mux.NewRouter()
+	// Routes consist of a path and a handler function.
+	r.HandleFunc("/health", YourHandler)
+
+	// Bind to a port and pass our router in
+	log.Fatal(http.ListenAndServe(":8080", r))
+
+	cyanFmt.Println("██████╗  ██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗               ██████╗ ██████╗ ███████╗███████╗███████╗███╗   ██╗████████╗ █████╗  ██████╗██╗ ██████╗ ███╗   ██╗")
 	cyanFmt.Println("██╔════╝ ██╔═══██╗██║     ██╔══██╗████╗  ██║██╔════╝               ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║")
 	cyanFmt.Println("██║  ███╗██║   ██║██║     ███████║██╔██╗ ██║██║  ███╗    █████╗    ██████╔╝██████╔╝█████╗  ███████╗█████╗  ██╔██╗ ██║   ██║   ███████║██║     ██║██║   ██║██╔██╗ ██║")
 	cyanFmt.Println("██║   ██║██║   ██║██║     ██╔══██║██║╚██╗██║██║   ██║    ╚════╝    ██╔═══╝ ██╔══██╗██╔══╝  ╚════██║██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██║     ██║██║   ██║██║╚██╗██║")
